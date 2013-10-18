@@ -1,4 +1,4 @@
 graffitounes_iOS
 ================
 
-Application mobile iOS de valorisation du street-art.
+Application mobile (Android et iOS) de valorisation du street-art.
