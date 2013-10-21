@@ -375,6 +375,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="D7W-G1-EMu">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <navigationBar contentMode="scaleToFill" barStyle="black" id="VaG-G8-IoL">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1894,13 +1895,22 @@
     <resources>
         <image name="BGBtn.png" width="279" height="86"/>
         <image name="MVSappm_fonct_profil.png" width="32" height="32"/>
+        <image name="MVSappm_fonct_profil.png" width="32" height="32"/>
         <image name="ajout_photo.png" width="214" height="180"/>
         <image name="arrow.png" width="9" height="6"/>
+        <image name="arrow.png" width="9" height="6"/>
         <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_comment.png" width="319" height="51"/>
         <image name="bg_comment.png" width="319" height="51"/>
         <image name="bg_hachure.png" width="320" height="416"/>
         <image name="bgcomment.png" width="16" height="16"/>
         <image name="bkg-black-graf-iphone.png" width="640" height="918"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
         <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
         <image name="bt-fb.png" width="97" height="142"/>
         <image name="bt-google.png" width="89" height="113"/>
@@ -1915,8 +1925,11 @@
         <image name="ic_geoloc.png" width="54" height="32"/>
         <image name="ic_map.png" width="21" height="25"/>
         <image name="marqueur_profil.png" width="13" height="16"/>
+        <image name="marqueur_profil.png" width="13" height="16"/>
+        <image name="meslike_off.png" width="28" height="29"/>
         <image name="meslike_off.png" width="28" height="29"/>
         <image name="meslike_on.png" width="28" height="29"/>
+        <image name="mesphotos_on.png" width="28" height="29"/>
         <image name="mesphotos_on.png" width="28" height="29"/>
         <image name="photos.png" width="40" height="32"/>
         <image name="shareBG.png" width="551" height="62"/>

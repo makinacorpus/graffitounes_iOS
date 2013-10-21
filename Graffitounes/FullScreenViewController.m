@@ -26,6 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    FullImage.contentMode = UIViewContentModeScaleAspectFit;
     FullImage.image = full;
 	// Do any additional setup after loading the view.
 }
