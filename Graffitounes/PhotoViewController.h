@@ -28,6 +28,7 @@
 	CGFloat _keyboardHeight;
     NSMutableString *JsonToSend;
     NSMutableArray *ResultTempID;
+    NSString *PicSource;
 }
 
 @property (weak, nonatomic) IBOutlet UIView *ViewForTagLabel;

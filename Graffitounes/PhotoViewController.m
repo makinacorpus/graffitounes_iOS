@@ -37,6 +37,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 -(void)viewDidAppear:(BOOL)animated
 {
+    PicSource = [[NSString alloc] init];
     [ScrlPage setContentOffset:CGPointMake(0, 0) animated:YES];
     ResultTempID = [[NSMutableArray alloc] init];
     NSDate *date = [NSDate date];
@@ -46,7 +47,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [dateField setText:dateString];
     
     //search Tag
-    [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
+    /*[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
     NSURL *urll = [NSURL URLWithString:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.tags.getList"];
     NSURLRequest *request = [NSURLRequest requestWithURL:urll];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -72,7 +73,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         [alertView show];
     }];
     
-    [operation start];
+    [operation start];*/
 
 }
 - (void)showContactsPicker:(id)sender {
@@ -753,6 +754,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        PicSource = @"library";
         [self presentViewController:picker animated:YES completion:NULL];
 
     }
@@ -779,6 +781,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
+    NSLog(@"%@",PicSource);
     TokenImage.contentMode = UIViewContentModeScaleAspectFit;
     [picker dismissModalViewControllerAnimated:YES];
     TokenImage.backgroundColor = [UIColor clearColor];
