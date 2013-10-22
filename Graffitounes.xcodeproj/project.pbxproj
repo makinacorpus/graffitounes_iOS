@@ -94,6 +94,7 @@
 		A9975925175900670080C668 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = A9975924175900670080C668 /* edit.png */; };
 		A998295E1758A578006949EE /* libMBProgressHUD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A998295B1758A543006949EE /* libMBProgressHUD.a */; };
 		A9A9127F17AA86D50052CFE2 /* graffitounes.png in Resources */ = {isa = PBXBuildFile; fileRef = A9A9127E17AA86D40052CFE2 /* graffitounes.png */; };
+		A9BAB61B18166D4D00E85420 /* CustomMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9BAB61A18166D4D00E85420 /* CustomMapViewController.m */; };
 		A9C3E9FC17DF3268006A99F8 /* CarteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C3E9FB17DF3268006A99F8 /* CarteViewController.m */; };
 		A9C3EA0217DF50CE006A99F8 /* PointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C3EA0117DF50CE006A99F8 /* PointAnnotation.m */; };
 		A9C930C81758D9CB00B04CA9 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A9C930C71758D9CB00B04CA9 /* CommentCell.m */; };
@@ -264,6 +265,8 @@
 		A9975924175900670080C668 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
 		A99829561758A542006949EE /* MBProgressHUD.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MBProgressHUD.xcodeproj; path = "../../../Downloads/MBProgressHUD-master/MBProgressHUD.xcodeproj"; sourceTree = "<group>"; };
 		A9A9127E17AA86D40052CFE2 /* graffitounes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graffitounes.png; sourceTree = "<group>"; };
+		A9BAB61918166D4D00E85420 /* CustomMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomMapViewController.h; sourceTree = "<group>"; };
+		A9BAB61A18166D4D00E85420 /* CustomMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomMapViewController.m; sourceTree = "<group>"; };
 		A9C3E9FA17DF3268006A99F8 /* CarteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarteViewController.h; sourceTree = "<group>"; };
 		A9C3E9FB17DF3268006A99F8 /* CarteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarteViewController.m; sourceTree = "<group>"; };
 		A9C3EA0017DF50CE006A99F8 /* PointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointAnnotation.h; sourceTree = "<group>"; };
@@ -644,6 +647,8 @@
 				A9C3EA0117DF50CE006A99F8 /* PointAnnotation.m */,
 				A9CC205417E86876003A153A /* MeViewController.h */,
 				A9CC205517E86876003A153A /* MeViewController.m */,
+				A9BAB61918166D4D00E85420 /* CustomMapViewController.h */,
+				A9BAB61A18166D4D00E85420 /* CustomMapViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -846,6 +851,7 @@
 				A981A9BF174C17580001BE23 /* AFPropertyListRequestOperation.m in Sources */,
 				A981A9C0174C17580001BE23 /* AFURLConnectionOperation.m in Sources */,
 				A981A9C1174C17580001BE23 /* AFXMLRequestOperation.m in Sources */,
+				A9BAB61B18166D4D00E85420 /* CustomMapViewController.m in Sources */,
 				A981A9C2174C17580001BE23 /* UIImageView+AFNetworking.m in Sources */,
 				A9FFA7791757A74000AE8495 /* Reachability.m in Sources */,
 				A9FFA77D1757A81000AE8495 /* SIAlertView.m in Sources */,

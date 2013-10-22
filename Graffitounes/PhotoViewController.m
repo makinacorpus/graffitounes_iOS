@@ -781,17 +781,42 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    NSLog(@"%@",PicSource);
+    if ([PicSource isEqualToString:@"library"]) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Voulez vous changer l'emplacement?" andMessage:nil];
+        
+        [alertView addButtonWithTitle:@"Oui"
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alert) {
+                                  //Perform
+                                  [self performSegueWithIdentifier:@"CustomPlace" sender:self];
+                            }];
+        [alertView addButtonWithTitle:@"Non"
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alert) {
+                            }];
+        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
+        [alertView setTransitionStyle:SIAlertViewTransitionStyleSlideFromTop];
+        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
+        [alertView show];
+    }
     TokenImage.contentMode = UIViewContentModeScaleAspectFit;
     [picker dismissModalViewControllerAnimated:YES];
     TokenImage.backgroundColor = [UIColor clearColor];
     TokenImage.image = image;
+}
+-(void)viewWillDisappear:(BOOL)animated
+{
+    
+    
+
+    
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
     TokenImage.image = cover;
     commentField.text = nil;
     titleField.text = nil;
+    
 }
 
 @end
