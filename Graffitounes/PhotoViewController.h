@@ -7,10 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MBProgressHUD/MBProgressHUD.h>
 #import "TITokenField.h"
-
+#import "Base64.h"
+#import "AFHTTPClient.h"
+#import "AFJSONRequestOperation.h"
+#import "Reachability.h"
+#import "SIAlertView.h"
+#import <QuartzCore/QuartzCore.h>
+#import "Names.h"
 @interface PhotoViewController : UIViewController<CLLocationManagerDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,TITokenFieldDelegate>
 {
     CGFloat animatedDistance;
@@ -29,6 +36,7 @@
     NSMutableString *JsonToSend;
     NSMutableArray *ResultTempID;
     NSString *PicSource;
+    
 }
 
 @property (weak, nonatomic) IBOutlet UIView *ViewForTagLabel;

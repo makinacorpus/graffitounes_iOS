@@ -7,13 +7,8 @@
 //
 
 #import "PhotoViewController.h"
-#import "Base64.h"
-#import "AFHTTPClient.h"
-#import "AFJSONRequestOperation.h"
-#import "Reachability.h"
-#import "SIAlertView.h"
-#import <QuartzCore/QuartzCore.h>
-#import "Names.h"
+
+
 static const CGFloat KEYBOARD_ANIMATION_DURATION = 0.3;
 static const CGFloat MINIMUM_SCROLL_FRACTION = 0.2;
 static const CGFloat MAXIMUM_SCROLL_FRACTION = 0.8;
@@ -251,9 +246,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     dateField.layer.borderColor = [[UIColor colorWithRed:(39/255.0) green:(205/255.0) blue:(222/255.0) alpha:1] CGColor];
     commentField.layer.borderWidth = 1.0f;
     commentField.layer.borderColor = [[UIColor colorWithRed:(39/255.0) green:(205/255.0) blue:(222/255.0) alpha:1] CGColor];
-    CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    NSLog(@"%f",screenBounds.size.height);
-    
     [ScrlPage setContentSize:CGSizeMake(320, 550)];
     [ScrlPage setBounces:NO];
     [dateField setEnabled:NO];
@@ -329,7 +321,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                            // Iterate through all of the placemarks returned
                            // and output them to the console
                            for(CLPlacemark *placemark in placemarks){
-                               [locationField setText:[placemark name]];
+                               //[locationField setText:[placemark name]];
                                [spinnerAdress stopAnimating];
                                spinnerAdress.hidden = YES;
                            }
@@ -788,7 +780,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                  type:SIAlertViewButtonTypeDefault
                               handler:^(SIAlertView *alert) {
                                   //Perform
-                                  [self performSegueWithIdentifier:@"CustomPlace" sender:self];
+                                  //[self performSegueWithIdentifier:@"CustomPlace" sender:self];
+                                  CGRect screenRect = [[UIScreen mainScreen] bounds];
+                                  CGFloat screenWidth = screenRect.size.width;
+                                  CGFloat screenHeight = screenRect.size.height;
+                                  MKMapView *CustomMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
+                                  [self.view addSubview:CustomMap];
+                                  
+                                  [UIView beginAnimations:@"MoveView" context:nil];
+                                  [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+                                  [UIView setAnimationDuration:0.5f];
+                                  CustomMap.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+                                  [UIView commitAnimations];
+                                  
                             }];
         [alertView addButtonWithTitle:@"Non"
                                  type:SIAlertViewButtonTypeDefault
@@ -813,9 +817,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
-    TokenImage.image = cover;
-    commentField.text = nil;
-    titleField.text = nil;
+    //TokenImage.image = cover;
+    //commentField.text = nil;
+    //titleField.text = nil;
     
 }
 
