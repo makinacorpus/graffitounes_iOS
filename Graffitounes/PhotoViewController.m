@@ -801,6 +801,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
+    //NSLog(@"dalloc");
+    //CustomMap = NULL;
+    [CustomMap removeFromSuperview];
+    locationField.text = nil;
     TokenImage.image = cover;
     commentField.text = nil;
     titleField.text = nil;
@@ -889,7 +893,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
     }
 }*/
-
 - (IBAction)showCustomMap:(id)sender {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
