@@ -32,7 +32,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 -(void)viewDidAppear:(BOOL)animated
 {
-    PicSource = [[NSString alloc] init];
     [ScrlPage setContentOffset:CGPointMake(0, 0) animated:YES];
     ResultTempID = [[NSMutableArray alloc] init];
     NSDate *date = [NSDate date];
@@ -250,9 +249,9 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [ScrlPage setBounces:NO];
     [dateField setEnabled:NO];
     [locationField setEnabled:NO];
+    //locationField.inputView = [[UIView alloc] initWithFrame:CGRectZero];
     
-    
-    //Login for add comments
+    //Login for add comments;
     prefs = [NSUserDefaults standardUserDefaults];
     NSURL *url = [NSURL URLWithString:@"http://graffitounes.makina-corpus.net"];
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:url];
@@ -321,7 +320,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                            // Iterate through all of the placemarks returned
                            // and output them to the console
                            for(CLPlacemark *placemark in placemarks){
-                               //[locationField setText:[placemark name]];
+                               [locationField setText:[placemark name]];
                                [spinnerAdress stopAnimating];
                                spinnerAdress.hidden = YES;
                            }
@@ -746,7 +745,6 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
         picker.delegate = self;
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        PicSource = @"library";
         [self presentViewController:picker animated:YES completion:NULL];
 
     }
@@ -773,40 +771,21 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo
 {
-    if ([PicSource isEqualToString:@"library"]) {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Voulez vous changer l'emplacement?" andMessage:nil];
-        
-        [alertView addButtonWithTitle:@"Oui"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alert) {
-                                  //Perform
-                                  //[self performSegueWithIdentifier:@"CustomPlace" sender:self];
-                                  CGRect screenRect = [[UIScreen mainScreen] bounds];
-                                  CGFloat screenWidth = screenRect.size.width;
-                                  CGFloat screenHeight = screenRect.size.height;
-                                  MKMapView *CustomMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
-                                  [self.view addSubview:CustomMap];
-                                  
-                                  [UIView beginAnimations:@"MoveView" context:nil];
-                                  [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
-                                  [UIView setAnimationDuration:0.5f];
-                                  CustomMap.frame = CGRectMake(0, 0, screenWidth, screenHeight);
-                                  [UIView commitAnimations];
-                                  
-                            }];
-        [alertView addButtonWithTitle:@"Non"
-                                 type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alert) {
-                            }];
-        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
-        [alertView setTransitionStyle:SIAlertViewTransitionStyleSlideFromTop];
-        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleGradient];
-        [alertView show];
-    }
     TokenImage.contentMode = UIViewContentModeScaleAspectFit;
     [picker dismissModalViewControllerAnimated:YES];
     TokenImage.backgroundColor = [UIColor clearColor];
     TokenImage.image = image;
+}
+-(void)closeMap
+{
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    [UIView beginAnimations:@"MoveView" context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.5f];
+    CustomMap.frame = CGRectMake(0, screenHeight, screenWidth, screenHeight);
+    [UIView commitAnimations];
 }
 -(void)viewWillDisappear:(BOOL)animated
 {
@@ -817,10 +796,127 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 }
 -(void)viewDidDisappear:(BOOL)animated
 {
-    //TokenImage.image = cover;
-    //commentField.text = nil;
-    //titleField.text = nil;
+    TokenImage.image = cover;
+    commentField.text = nil;
+    titleField.text = nil;
     
 }
+- (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    static NSString *AnnotationViewID = @"annotationViewID";
+    
+    MKAnnotationView *annotationView = (MKAnnotationView *)[CustomMap dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+    
+    if (annotationView == nil)
+    {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:AnnotationViewID];
+    }
+    
+         //setPinColor:MKPinAnnotationColorGreen];
 
+    annotationView.image = [UIImage imageNamed:@"marqueur_graffi.png"];
+    annotationView.draggable = YES;
+    annotationView.annotation = annotation;
+    
+    return annotationView;
+}
+-(void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState
+{
+    NSLog(@"yes");
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
+        CLLocation *theLocation = [[CLLocation alloc]initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        NSLog(@"dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
+        CLGeocoder *geocode = [[CLGeocoder alloc] init];
+        [geocode reverseGeocodeLocation:theLocation
+                       completionHandler:^(NSArray *placemarks, NSError *error){
+                           
+                           // Make sure the geocoder did not produce an error
+                           // before continuing
+                           if(!error){
+                               
+                               // Iterate through all of the placemarks returned
+                               // and output them to the console
+                               for(CLPlacemark *placemark in placemarks){
+                                   NSLog(@"%@",[placemark name]);
+                                   [locationField setText:[placemark name]];
+                                   //[spinnerAdress stopAnimating];
+                                   //spinnerAdress.hidden = YES;
+                               }
+                           }
+                           else{
+                               // Our geocoder had an error, output a message
+                               // to the console
+                               NSLog(@"There was a reverse geocoding error\n%@",
+                                     [error localizedDescription]);
+                           }
+                       }
+         ];
+        
+        
+        MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+        //CLLocation *theLocation = [[CLLocation alloc]initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        CLLocationCoordinate2D location;
+        location.latitude = droppedAt.latitude;
+        location.longitude = droppedAt.longitude;
+        [point setCoordinate:(location)];
+        //[point setTitle:businessName];
+        
+        //ITS RIGHT HERE THAT I GET THE ERROR
+        view.hidden = YES;
+        [CustomMap addAnnotation:point];
+        //[view setDragState:MKAnnotationViewDragStateDragging];
+
+    }
+    
+}
+/*- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
+   fromOldState:(MKAnnotationViewDragState)oldState;
+{
+    NSLog(@"pin Drag");
+    
+    if (newState == MKAnnotationViewDragStateEnding)
+    {
+        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
+        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
+        
+        //CLLocation* draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        
+        
+        
+    }
+}*/
+
+- (IBAction)showCustomMap:(id)sender {
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    CustomMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
+    CustomMap.showsUserLocation = YES;
+    CustomMap.delegate = self;
+    UIButton *closeMapBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [closeMapBtn addTarget:self
+                    action:@selector(closeMap)
+          forControlEvents:UIControlEventTouchDown];
+    //[closeMapBtn setTitle:@"Show View" forState:UIControlStateNormal];
+    closeMapBtn.frame = CGRectMake(280, 10, 32, 21);
+    //closeMapBtn.imageView.image = [UIImage imageNamed:@"fleche.png"];
+    //[view addSubview:button];
+    [closeMapBtn setImage:[UIImage imageNamed:@"fleche.png"] forState:UIControlStateNormal];
+    
+    
+    [self.view addSubview:CustomMap];
+    [CustomMap addSubview:closeMapBtn];
+    
+    
+    
+    
+    
+    [UIView beginAnimations:@"MoveView" context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.5f];
+    CustomMap.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+    [UIView commitAnimations];
+}
 @end

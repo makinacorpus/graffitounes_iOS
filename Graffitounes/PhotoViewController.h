@@ -18,7 +18,7 @@
 #import "SIAlertView.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Names.h"
-@interface PhotoViewController : UIViewController<CLLocationManagerDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,TITokenFieldDelegate>
+@interface PhotoViewController : UIViewController<MKMapViewDelegate,MKAnnotation,CLLocationManagerDelegate,UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate,TITokenFieldDelegate>
 {
     CGFloat animatedDistance;
     NSUserDefaults *prefs;
@@ -35,9 +35,10 @@
 	CGFloat _keyboardHeight;
     NSMutableString *JsonToSend;
     NSMutableArray *ResultTempID;
-    NSString *PicSource;
+    MKMapView *CustomMap;
     
 }
+- (IBAction)showCustomMap:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UIView *ViewForTagLabel;
 @property (weak, nonatomic) IBOutlet UILabel *Taglabel;
