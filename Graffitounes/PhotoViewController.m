@@ -39,7 +39,44 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [dateFormat setDateFormat:@"d/M/Y"];
     NSString *dateString = [dateFormat stringFromDate:date];
     [dateField setText:dateString];
+    //Set location Manager
+    managerLocation = [[CLLocationManager alloc] init];
+    [managerLocation setDelegate:self];
+    [managerLocation setDistanceFilter:kCLDistanceFilterNone];
+    [managerLocation setDesiredAccuracy:kCLLocationAccuracyBest];
+    [managerLocation startUpdatingLocation];
     
+    NSLog(@"%f",managerLocation.location.coordinate.latitude);
+    [spinnerAdress startAnimating];
+    CLLocation *location = [[CLLocation alloc] init];
+    location = managerLocation.location;
+    [managerLocation stopUpdatingLocation];
+    Longitude = location.coordinate.longitude;
+    Latitude = location.coordinate.latitude;
+    geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:location
+                   completionHandler:^(NSArray *placemarks, NSError *error){
+                       
+                       // Make sure the geocoder did not produce an error
+                       // before continuing
+                       if(!error){
+                           
+                           // Iterate through all of the placemarks returned
+                           // and output them to the console
+                           for(CLPlacemark *placemark in placemarks){
+                               [locationField setText:[placemark name]];
+                               [spinnerAdress stopAnimating];
+                               spinnerAdress.hidden = YES;
+                           }
+                       }
+                       else{
+                           // Our geocoder had an error, output a message
+                           // to the console
+                           NSLog(@"There was a reverse geocoding error\n%@",
+                                 [error localizedDescription]);
+                       }
+                   }
+     ];
     //search Tag
     /*[AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObject:@"text/html"]];
     NSURL *urll = [NSURL URLWithString:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.tags.getList"];
@@ -267,12 +304,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
     
-    //Set location Manager
-    managerLocation = [[CLLocationManager alloc] init];
-    [managerLocation setDelegate:self];
-    [managerLocation setDistanceFilter:kCLDistanceFilterNone];
-    [managerLocation setDesiredAccuracy:kCLLocationAccuracyBest];
-    [managerLocation startUpdatingLocation];
+    
     
     
     //Tap for get picture
@@ -305,34 +337,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
      didUpdateLocations:(NSArray *)locations
 
 {
-    [spinnerAdress startAnimating];
-    CLLocation *location = [[CLLocation alloc] init];
-    location = [locations lastObject];
-    [managerLocation stopUpdatingLocation];
-    geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:location
-                   completionHandler:^(NSArray *placemarks, NSError *error){
-                       
-                       // Make sure the geocoder did not produce an error
-                       // before continuing
-                       if(!error){
-                           
-                           // Iterate through all of the placemarks returned
-                           // and output them to the console
-                           for(CLPlacemark *placemark in placemarks){
-                               [locationField setText:[placemark name]];
-                               [spinnerAdress stopAnimating];
-                               spinnerAdress.hidden = YES;
-                           }
-                       }
-                       else{
-                           // Our geocoder had an error, output a message
-                           // to the console
-                           NSLog(@"There was a reverse geocoding error\n%@",
-                                 [error localizedDescription]);
-                       }
-                   }
-     ];
+    
 }
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
@@ -618,8 +623,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                       [NSString stringWithString:Sum], @"original_sum",
                                       @"1", @"categories",
                                       [prefs objectForKey:@"author"],@"author",
-                                      [NSNumber numberWithDouble:managerLocation.location.coordinate.latitude],@"lat",
-                                      [NSNumber numberWithDouble:managerLocation.location.coordinate.longitude],@"lon",
+                                      [NSNumber numberWithDouble:Latitude],@"lat",
+                                      [NSNumber numberWithDouble:Longitude],@"lon",
                                       titleField.text,@"name",
                                       commentField.text,@"comment",
                                       [NSString stringWithFormat:@"%@",tag_ids],@"tag_ids",
@@ -827,22 +832,19 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     {
         CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
         CLLocation *theLocation = [[CLLocation alloc]initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
+        Latitude = droppedAt.latitude;
+        Longitude = droppedAt.longitude;
         NSLog(@"dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
         CLGeocoder *geocode = [[CLGeocoder alloc] init];
         [geocode reverseGeocodeLocation:theLocation
                        completionHandler:^(NSArray *placemarks, NSError *error){
-                           
-                           // Make sure the geocoder did not produce an error
-                           // before continuing
-                           if(!error){
+                               if(!error){
                                
                                // Iterate through all of the placemarks returned
                                // and output them to the console
                                for(CLPlacemark *placemark in placemarks){
                                    NSLog(@"%@",[placemark name]);
                                    [locationField setText:[placemark name]];
-                                   //[spinnerAdress stopAnimating];
-                                   //spinnerAdress.hidden = YES;
                                }
                            }
                            else{

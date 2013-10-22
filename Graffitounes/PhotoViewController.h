@@ -36,6 +36,8 @@
     NSMutableString *JsonToSend;
     NSMutableArray *ResultTempID;
     MKMapView *CustomMap;
+    double Longitude;
+    double Latitude;
     
 }
 - (IBAction)showCustomMap:(id)sender;
