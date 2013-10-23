@@ -282,7 +282,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     dateField.layer.borderColor = [[UIColor colorWithRed:(39/255.0) green:(205/255.0) blue:(222/255.0) alpha:1] CGColor];
     commentField.layer.borderWidth = 1.0f;
     commentField.layer.borderColor = [[UIColor colorWithRed:(39/255.0) green:(205/255.0) blue:(222/255.0) alpha:1] CGColor];
-    [ScrlPage setContentSize:CGSizeMake(320, 550)];
+    [ScrlPage setContentSize:CGSizeMake(320, 530)];
     [ScrlPage setBounces:NO];
     [dateField setEnabled:NO];
     [locationField setEnabled:NO];
@@ -446,7 +446,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [UIView commitAnimations];
 }
 - (void)textViewDidEndEditing:(UITextView *)textView{
-    [ScrlPage setContentSize:CGSizeMake(320,550)];
+    [ScrlPage setContentSize:CGSizeMake(320,530)];
     CGRect viewFrame = self.view.frame;
     viewFrame.origin.y += animatedDistance - 52;
     [UIView beginAnimations:nil context:NULL];
@@ -640,8 +640,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
                                   options:kNilOptions 
                                   error:&error];
             //NSLog(@"%@",[[json objectForKey:@"result"] objectForKey:@"image_id"]);
-            NSString *image_id = [NSString stringWithFormat:@"%@",[[json objectForKey:@"result"] objectForKey:@"image_id"]];
-            [self sendTag:image_id];
+            //NSString *image_id = [NSString stringWithFormat:@"%@",[[json objectForKey:@"result"] objectForKey:@"image_id"]];
+            //[self sendTag:image_id];
             [hud hide:YES];
             SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Votre photo a été ajoutée avec succès!" andMessage:nil];
             [self.tabBarController setSelectedIndex:0];
@@ -672,7 +672,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
 }
 
--(void)AddNewTag
+/*-(void)AddNewTag
 {
     NSMutableDictionary *entry = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   //[NSString stringWithString:Sum], @"file_sum",
@@ -695,17 +695,17 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         
         [hud hide:YES];
         TokenImage.image = cover;
-        commentField.text = nil;
-        titleField.text = nil;
+        //commentField.text = nil;
+        //titleField.text = nil;
         //add new Tag to database
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
 
-}
+}*/
 
 
--(void)sendTag:(NSString *)image_id
+/*-(void)sendTag:(NSString *)image_id
 {
     NSMutableDictionary *entry = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                   [NSString stringWithString:image_id], @"image_id",
@@ -723,7 +723,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         NSLog(@"[HTTPClient Error]: %@", error.localizedDescription);
     }];
 
-}
+}*/
 
 -(void)Getphoto {
     UIActionSheet *actionSheet = [[UIActionSheet alloc]
@@ -806,8 +806,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [CustomMap removeFromSuperview];
     locationField.text = nil;
     TokenImage.image = cover;
-    commentField.text = nil;
-    titleField.text = nil;
+    //commentField.text = nil;
+    //titleField.text = nil;
     
 }
 - (MKAnnotationView *)mapView:(MKMapView *)map viewForAnnotation:(id <MKAnnotation>)annotation
@@ -826,6 +826,8 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     annotationView.image = [UIImage imageNamed:@"marqueur_graffi.png"];
     annotationView.draggable = YES;
     annotationView.annotation = annotation;
+    //[CustomMap setCenterCoordinate:nil animated:YES];
+
     
     return annotationView;
 }
@@ -877,29 +879,26 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     
 }
-/*- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
-   fromOldState:(MKAnnotationViewDragState)oldState;
+
+-(void)keyboardDidShow
 {
-    NSLog(@"pin Drag");
-    
-    if (newState == MKAnnotationViewDragStateEnding)
-    {
-        CLLocationCoordinate2D droppedAt = view.annotation.coordinate;
-        NSLog(@"Pin dropped at %f,%f", droppedAt.latitude, droppedAt.longitude);
-        
-        //CLLocation* draglocation = [[CLLocation alloc] initWithLatitude:droppedAt.latitude longitude:droppedAt.longitude];
-        
-        
-        
-    }
-}*/
+    NSLog(@"YES");
+}
 - (IBAction)showCustomMap:(id)sender {
+    if([titleField isFirstResponder]){
+        [titleField resignFirstResponder];
+    }
+    if ([commentField isFirstResponder]) {
+        [commentField resignFirstResponder];
+    }
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     CustomMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
     CustomMap.showsUserLocation = YES;
     CustomMap.delegate = self;
+    [CustomMap setCenterCoordinate:CLLocationCoordinate2DMake(Latitude, Longitude)];
+
     UIButton *closeMapBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeMapBtn addTarget:self
                     action:@selector(closeMap)

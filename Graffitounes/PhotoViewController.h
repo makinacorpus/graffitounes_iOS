@@ -54,7 +54,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *TokenImage;
 @property (weak, nonatomic) IBOutlet UITextField *dateField;
 @property (weak, nonatomic) IBOutlet UITextField *locationField;
-@property (weak, nonatomic) IBOutlet UITextView *titleField;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextView *commentField;
 @property (nonatomic,retain) CLLocationManager *managerLocation;
 @property (nonatomic,retain) CLGeocoder *geocoder;
