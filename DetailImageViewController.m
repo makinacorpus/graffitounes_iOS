@@ -78,7 +78,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     //Show picture infos
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         author.text = [[JSON objectForKey:@"result"] objectForKey:@"author"];
-        date_available.text = [[JSON objectForKey:@"result"] objectForKey:@"date_metadata_update"];
+        date_available.text = [self GetFrenshFormatForDate:[[JSON objectForKey:@"result"] objectForKey:@"date_metadata_update"]];
         UIImage *img = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[[[JSON objectForKey:@"result"] objectForKey:@"derivatives"] objectForKey:@"xsmall"] objectForKey:@"url"]]]];
         urlPicto = [[NSString alloc] initWithFormat:@"%@",[[[[JSON objectForKey:@"result"] objectForKey:@"derivatives"] objectForKey:@"xsmall"] objectForKey:@"url"]];
         image.image = img;
