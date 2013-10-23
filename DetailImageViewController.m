@@ -281,9 +281,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         return cell;
     }else
     {
+        //NSLog(@"%@",[[arrayComment objectAtIndex:indexPath.row] objectForKey:@"date"]);
         NSRange range = NSMakeRange(0, 10);
         NSString *subString = [[[arrayComment objectAtIndex:indexPath.row] objectForKey:@"date"] substringWithRange:range];
-        cell.dateComment.text = subString;
+        
+        cell.dateComment.text = [self GetFrenshFormatForDate:subString]; ;
         cell.personComment.text = [[arrayComment objectAtIndex:indexPath.row] objectForKey:@"author"];
         cell.commentText.text = [[arrayComment objectAtIndex:indexPath.row] objectForKey:@"content"];
         //NSLog(@"http://graffitounes.makina-corpus.net/upload/profile_picture/%@-picture.jpg",[[arrayComment objectAtIndex:indexPath.row] objectForKey:@"id_user"]);
@@ -301,7 +303,16 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     
 }
 
-
+-(NSString *)GetFrenshFormatForDate:(NSString *)date
+{
+    NSRange rangeYear = NSMakeRange(0,4);
+    NSRange rangeMonth = NSMakeRange(5,2);
+    NSRange rangeDay = NSMakeRange(8,2);
+    NSString *year = [date substringWithRange:rangeYear];
+    NSString *month = [date substringWithRange:rangeMonth];
+    NSString *day = [date substringWithRange:rangeDay];
+    return [NSString stringWithFormat:@"%@-%@-%@",day,month,year];
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 70;
