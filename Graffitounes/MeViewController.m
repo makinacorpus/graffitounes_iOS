@@ -206,11 +206,11 @@
     static NSString *cellIdentifier = @"Cellule";
     ImageCellViewController *cell = (ImageCellViewController *)[cv dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
     if (cv == MyFavCollection) {
-        [cell.ImageView setImageWithURL:[NSURL URLWithString:[[[ResultFav[indexPath.row] objectForKey:@"derivatives"] objectForKey:@"thumb"] objectForKey:@"url"]]];
+        [cell.ImageView setImageWithURL:[NSURL URLWithString:[[[ResultFav[indexPath.row] objectForKey:@"derivatives"] objectForKey:@"square"] objectForKey:@"url"]]];
         cell.ParentView.hidden = YES;
     }else
     {
-        [cell.ImageView setImageWithURL:[NSURL URLWithString:[[[Result[indexPath.row] objectForKey:@"derivatives"] objectForKey:@"thumb"] objectForKey:@"url"]]];
+        [cell.ImageView setImageWithURL:[NSURL URLWithString:[[[Result[indexPath.row] objectForKey:@"derivatives"] objectForKey:@"square"] objectForKey:@"url"]]];
         cell.ParentView.hidden = YES;
     }
     return cell;
