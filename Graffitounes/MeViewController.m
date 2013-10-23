@@ -251,7 +251,7 @@
     [Pager setContentOffset:CGPointMake(0,0) animated:YES];
     [UIView animateWithDuration:0.2
                      animations:^{
-                         Arrow.frame = CGRectMake(69, 170, 16, 10);
+                         Arrow.frame = CGRectMake(71, 170, 16, 10);
                      }
                      completion:^(BOOL finished){
                          Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_on.png"];
@@ -270,7 +270,7 @@
     [Pager setContentOffset:CGPointMake(306,0) animated:YES];
     [UIView animateWithDuration:0.2
                      animations:^{
-                         Arrow.frame = CGRectMake(230, 170, 16, 10);
+                         Arrow.frame = CGRectMake(229, 170, 16, 10);
                      }
                      completion:^(BOOL finished){
                          Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_off.png"];
