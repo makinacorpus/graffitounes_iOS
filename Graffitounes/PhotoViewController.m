@@ -870,11 +870,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
         location.longitude = droppedAt.longitude;
         [point setCoordinate:(location)];
         //[point setTitle:businessName];
+        //[CustomMap addAnnotation:view.annotation];
         
         //ITS RIGHT HERE THAT I GET THE ERROR
-        view.hidden = YES;
-        [CustomMap addAnnotation:point];
-        //[view setDragState:MKAnnotationViewDragStateDragging];
+        //[view removeFromSuperview];
+        //[CustomMap addAnnotation:point];
+        [view setDragState:MKAnnotationViewDragStateNone];
 
     }
     
@@ -895,10 +896,10 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
     CustomMap = [[MKMapView alloc] initWithFrame:CGRectMake(0, screenHeight, screenWidth, screenHeight)];
-    CustomMap.showsUserLocation = YES;
+    //CustomMap.showsUserLocation = YES;
     CustomMap.delegate = self;
     [CustomMap setCenterCoordinate:CLLocationCoordinate2DMake(Latitude, Longitude)];
-
+    
     UIButton *closeMapBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [closeMapBtn addTarget:self
                     action:@selector(closeMap)
@@ -913,6 +914,12 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self.view addSubview:CustomMap];
     [CustomMap addSubview:closeMapBtn];
     
+    MKPointAnnotation *point = [[MKPointAnnotation alloc] init];
+    CLLocationCoordinate2D location;
+    location.latitude = Latitude;
+    location.longitude = Longitude;
+    [point setCoordinate:(location)];
+    [CustomMap addAnnotation:point];
     
     
     
