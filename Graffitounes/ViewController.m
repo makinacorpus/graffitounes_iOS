@@ -31,7 +31,7 @@
     }
     
     //Change default font of navigation bar
-    [[UINavigationBar appearance] setTitleTextAttributes:
+    /*[[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
       NSForegroundColorAttributeName,
@@ -41,7 +41,7 @@
       UITextAttributeTextShadowOffset,
       [UIFont fontWithName:@"kshandwrt" size:15.7],
       UITextAttributeFont,
-      nil]];
+      nil]];*/
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
