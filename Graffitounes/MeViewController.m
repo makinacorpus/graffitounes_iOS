@@ -41,13 +41,17 @@
         NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.categories.getImages&author=%@",[prefs objectForKey:@"author"]];
         StringUrl = [StringUrl stringByReplacingOccurrencesOfString:@" "
                                                          withString:@"%20"];
+        NSLog(@"%@",StringUrl);
+        Mypic.userInteractionEnabled = NO;
         [self setHPager];
         [self getData:StringUrl];
 
     }else
     {
         NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.images.Liked&user_id=%@",[prefs objectForKey:@"user_id"]];
-        //[self setHPager];
+        NSLog(@"%@",StringUrl);
+        Myfav.userInteractionEnabled = YES;
+        [self setHPager];
         [self getFav:StringUrl];
 
     }
@@ -95,8 +99,9 @@
         [Scroller setContentSize:CGSizeMake(320,height + margin + 186)];
     }else
     {
+        NSLog(@"test");
         CGRect framep = Pager.frame;
-        framep.size.height = height + margin + 150;
+        framep.size.height = height + margin + 147;
         Pager.frame = framep;
         CGRect frame = MyFavCollection.frame;
         frame.size.height = height + margin + 150;
@@ -112,22 +117,23 @@
     margin = (numbreItem/2) * 12;
     height = 135 * (numbreItem/2);
     if (numbreItem %2 == 0) {
-        CGRect frame = MyPicCollection.frame;
-        frame.size.height = height + margin;
-        MyPicCollection.frame = frame;
         CGRect framep = Pager.frame;
         framep.size.height = height + margin;
         Pager.frame = framep;
-        [Scroller setContentSize:CGSizeMake(320,height + margin + 186)];
-    }else
-    {
         CGRect frame = MyPicCollection.frame;
         frame.size.height = height + margin;
         MyPicCollection.frame = frame;
+        [Scroller setContentSize:CGSizeMake(320,height + margin + 186)];
+    }else
+    {
+        NSLog(@"test");
         CGRect framep = Pager.frame;
-        framep.size.height = height + margin+140;
+        framep.size.height = height + margin + 147;
         Pager.frame = framep;
-        [Scroller setContentSize:CGSizeMake(320,height + margin + 186 + 140)];
+        CGRect frame = MyPicCollection.frame;
+        frame.size.height = height + margin + 150;
+        MyPicCollection.frame = frame;
+        [Scroller setContentSize:CGSizeMake(320,height + margin + 186 + 160)];
     }
 }
 -(void)getData:(NSString *)StringUrl
@@ -226,7 +232,6 @@
     return CGSizeMake(135 ,135);
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%i",indexPath.row);
     [self performSegueWithIdentifier:@"Detail" sender:collectionView];
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -255,6 +260,8 @@
                      }
                      completion:^(BOOL finished){
                          Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_on.png"];
+                         Mypic.userInteractionEnabled = NO;
+                         Myfav.userInteractionEnabled = YES;
                          Myfav.imageView.image = [UIImage imageNamed:@"meslike_off.png"];
                          NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.categories.getImages&author=%@",[prefs objectForKey:@"author"]];
                          StringUrl = [StringUrl stringByReplacingOccurrencesOfString:@" "
@@ -274,8 +281,11 @@
                      }
                      completion:^(BOOL finished){
                          Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_off.png"];
+                         Mypic.userInteractionEnabled = YES;
+                         Myfav.userInteractionEnabled = NO;
                          Myfav.imageView.image = [UIImage imageNamed:@"meslike_on.png"];
                          NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.images.Liked&user_id=%@",[prefs objectForKey:@"user_id"]];
+                         NSLog(@"%@",StringUrl);
                          [Scroller setContentOffset:CGPointZero animated:YES];
 
                          [self getFav:StringUrl];
@@ -288,7 +298,7 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     //NSLog(@"yahya");
-    static NSInteger previousPage = 0;
+    /*static NSInteger previousPage = 0;
     CGFloat pageWidth = scrollView.frame.size.width;
     float fractionalPage = scrollView.contentOffset.x / pageWidth;
     NSInteger page = lround(fractionalPage);
@@ -301,6 +311,7 @@
                              }
                              completion:^(BOOL finished){
                                  Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_off.png"];
+                                 //Myfav.enabled = NO;
                                  Myfav.imageView.image = [UIImage imageNamed:@"meslike_on.png"];
                                  NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.images.Liked&user_id=%@",[prefs objectForKey:@"user_id"]];
                                  //NSLog(@"%@",StringUrl);
@@ -316,6 +327,7 @@
                              }
                              completion:^(BOOL finished){
                                  Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_on.png"];
+                                 //Mypic.enabled = NO;
                                  Myfav.imageView.image = [UIImage imageNamed:@"meslike_off.png"];
                                  NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.categories.getImages&author=%@",[prefs objectForKey:@"author"]];
                                  StringUrl = [StringUrl stringByReplacingOccurrencesOfString:@" "
@@ -327,7 +339,7 @@
         }
             
     }
-    //NSLog(@"%i",previousPage);
+    //NSLog(@"%i",previousPage);*/
 
 }
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
