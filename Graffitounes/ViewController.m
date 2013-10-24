@@ -29,6 +29,7 @@
         [UINavigationBar appearance].tintColor = [UIColor whiteColor];
         [[UITabBar appearance] setTintColor:[UIColor colorWithRed:(39/255.0) green:(205/255.0) blue:(222/255.0) alpha:1]];
     }
+
     
     //Change default font of navigation bar
     /*[[UINavigationBar appearance] setTitleTextAttributes:

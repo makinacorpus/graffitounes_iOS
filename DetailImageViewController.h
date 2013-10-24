@@ -18,6 +18,7 @@
 #import "FullScreenViewController.h"
 #import "AFNetworking.h"
 #import "Constants.h"
+#import <Social/Social.h>
 @interface DetailImageViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,MKMapViewDelegate>
 {
     NSString *idImg;

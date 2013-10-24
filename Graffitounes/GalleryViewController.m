@@ -111,7 +111,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    //[self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"Graffitounes_navbar.png"] forBarMetrics:UIBarMetricsDefault];
+    UIImageView *header = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    header.image = [UIImage imageNamed:@"Graffitounes_navbar.png"];
+    [self.navigationController.navigationBar.topItem setTitleView:header];
+    //[self.view addSubview:header];
     //Check version
     float currentVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
     //Change Design of segement

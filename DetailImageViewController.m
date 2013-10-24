@@ -36,6 +36,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //self.navigationController.navigationBar.hidden = YES;
     //Scale Pictures
     image.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -519,12 +520,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     //NSLog(@"%i",facebookInstalled);
     if (facebookInstalled) {
         NSURL* url = [NSURL URLWithString:link];
+        
+        
         [FBDialogs presentShareDialogWithLink:url
                                       handler:^(FBAppCall *call, NSDictionary *results, NSError *error) {
                                           if(error) {
                                               NSLog(@"Error: %@", error.description);
                                           } else {
                                               NSLog(@"Success!");
+                                              NSLog(@"%@",call);
                                           }
                                       }];
     }else

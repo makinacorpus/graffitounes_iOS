@@ -52,7 +52,7 @@
             </objects>
             <point key="canvasLocation" x="38" y="58"/>
         </scene>
-        <!--Gallery View Controller - Graffitounes-->
+        <!--Gallery View Controller-->
         <scene sceneID="xMj-Rh-Q9L">
             <objects>
                 <viewController id="Rt2-tb-2cl" customClass="GalleryViewController" sceneMemberID="viewController">
@@ -109,7 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="Graffitounes" id="rdy-4g-chO">
+                    <navigationItem key="navigationItem" id="rdy-4g-chO">
                         <barButtonItem key="backBarButtonItem" title=" " id="MSX-U1-eQ0"/>
                     </navigationItem>
                     <connections>
@@ -1974,6 +1974,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3T4-8V-L2H"/>
+        <segue reference="qP8-h9-uz9"/>
     </inferredMetricsTieBreakers>
 </document>
