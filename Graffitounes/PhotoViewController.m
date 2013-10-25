@@ -919,6 +919,7 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     location.latitude = Latitude;
     location.longitude = Longitude;
     [point setCoordinate:(location)];
+    CustomMap.region = MKCoordinateRegionMakeWithDistance(location, 500, 500);
     [CustomMap addAnnotation:point];
     
     
