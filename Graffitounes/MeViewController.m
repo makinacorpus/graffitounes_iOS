@@ -43,6 +43,7 @@
                                                          withString:@"%20"];
         NSLog(@"%@",StringUrl);
         Mypic.userInteractionEnabled = NO;
+        Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_on.png"];
         [self setHPager];
         [self getData:StringUrl];
 
@@ -260,8 +261,8 @@
                      }
                      completion:^(BOOL finished){
                          Mypic.imageView.image = [UIImage imageNamed:@"mesphotos_on.png"];
-                         Mypic.userInteractionEnabled = NO;
                          Myfav.userInteractionEnabled = YES;
+                         Mypic.userInteractionEnabled = NO;
                          Myfav.imageView.image = [UIImage imageNamed:@"meslike_off.png"];
                          NSString *StringUrl =[NSString stringWithFormat:@"http://graffitounes.makina-corpus.net/ws.php?format=json&method=pwg.categories.getImages&author=%@",[prefs objectForKey:@"author"]];
                          StringUrl = [StringUrl stringByReplacingOccurrencesOfString:@" "
