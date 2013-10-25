@@ -30,8 +30,15 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     }
     return self;
 }
+
+-(void)addPlaceHolder
+{
+    commentField.text = @"Votre Commentaire";
+    commentField.textColor = [UIColor lightGrayColor];
+}
 -(void)viewDidAppear:(BOOL)animated
 {
+    [self addPlaceHolder];
     [ScrlPage setContentOffset:CGPointMake(0, 0) animated:YES];
     ResultTempID = [[NSMutableArray alloc] init];
     NSDate *date = [NSDate date];
@@ -178,10 +185,24 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
 - (void)tokenFieldFrameDidChange:(TITokenField *)tokenField {
 	[self textViewDidChange:_messageView];
 }
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    textView.text = @"";
+    textView.textColor = [UIColor blackColor];
+    return YES;
+}
 
 - (void)textViewDidChange:(UITextView *)textView {
 	//NSLog(@"%@",textView.text);
+    if(commentField.text.length == 0){
+        commentField.textColor = [UIColor lightGrayColor];
+        commentField.text = @"Votre Commentaire";
+        [textView resignFirstResponder];
+
+    }
 	if (!(textView == commentField)) {
+        
+        
         CGFloat oldHeight = _tokenFieldView.frame.size.height - _tokenFieldView.tokenField.frame.size.height;
         CGFloat newHeight = textView.contentSize.height + textView.font.lineHeight;
         
