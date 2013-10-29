@@ -53,6 +53,8 @@
 
         //UIImageView *ImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ic_marker.png"]];
         //NSLog(@"%@",);
+        ImageView.contentMode = UIViewContentModeScaleAspectFit;
+
         [ImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",[[[Result[((PointAnnotation *)annotation).row] objectForKey:@"derivatives"] objectForKey:@"thumb"] objectForKey:@"url"]]]];
         annotationView.leftCalloutAccessoryView = ImageView;
 

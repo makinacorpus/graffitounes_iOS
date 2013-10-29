@@ -124,7 +124,11 @@ static const CGFloat LANDSCAPE_KEYBOARD_HEIGHT = 162;
     [self numberOfLike];
     
     //init frame
-    ScrollView.frame = CGRectMake(0,0,320,480);
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    
+
+    ScrollView.frame = CGRectMake(0,0,screenRect.size.width,screenRect.size.height);
+    
     ScrollView.bounces = NO;
     CommentsList.hidden = YES;
     CommentArea.delegate=self;
