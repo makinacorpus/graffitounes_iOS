@@ -18,10 +18,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nIn-1N-jNM">
-                                <rect key="frame" x="63" y="385" width="73" height="70"/>
+                                <rect key="frame" x="80" y="387" width="160" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="bt-fb.png">
+                                <state key="normal" backgroundImage="btn_fcb_connect.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -31,14 +31,6 @@
                                 <connections>
                                     <action selector="FacebookConnect:" destination="2" eventType="touchUpInside" id="jGa-C2-dT6"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wgh-8e-izy">
-                                <rect key="frame" x="175" y="382" width="73" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" backgroundImage="bt-google.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -95,7 +87,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <activityIndicatorView key="backgroundView" opaque="NO" contentMode="scaleToFill" style="whiteLarge" id="lhf-h2-mwt">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="298"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="280" height="386"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </activityIndicatorView>
@@ -1940,16 +1932,24 @@
     <resources>
         <image name="BGBtn.png" width="279" height="86"/>
         <image name="MVSappm_fonct_profil.png" width="32" height="32"/>
+        <image name="MVSappm_fonct_profil.png" width="32" height="32"/>
         <image name="ajout_photo.png" width="214" height="180"/>
         <image name="arrow.png" width="9" height="6"/>
+        <image name="arrow.png" width="9" height="6"/>
         <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_btn-1.png" width="167" height="40"/>
+        <image name="bg_comment.png" width="319" height="51"/>
         <image name="bg_comment.png" width="319" height="51"/>
         <image name="bg_hachure.png" width="320" height="416"/>
         <image name="bgcomment.png" width="16" height="16"/>
         <image name="bkg-black-graf-iphone.png" width="640" height="918"/>
         <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
-        <image name="bt-fb.png" width="97" height="142"/>
-        <image name="bt-google.png" width="89" height="113"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
+        <image name="bkg-blanc-graf-iphone.png" width="640" height="916"/>
+        <image name="btn_fcb_connect.png" width="118" height="33"/>
         <image name="btn_fermer-2.png" width="20" height="20"/>
         <image name="category.png" width="63" height="60"/>
         <image name="coeur-liste-red.png" width="45" height="44"/>
@@ -1960,7 +1960,10 @@
         <image name="ic_facebook.png" width="20" height="23"/>
         <image name="ic_geoloc.png" width="54" height="32"/>
         <image name="ic_map.png" width="21" height="25"/>
+        <image name="ic_map.png" width="21" height="25"/>
         <image name="marqueur_profil.png" width="13" height="16"/>
+        <image name="marqueur_profil.png" width="13" height="16"/>
+        <image name="meslike_off.png" width="28" height="29"/>
         <image name="meslike_off.png" width="28" height="29"/>
         <image name="meslike_on.png" width="28" height="29"/>
         <image name="mesphotos_off.png" width="28" height="29"/>

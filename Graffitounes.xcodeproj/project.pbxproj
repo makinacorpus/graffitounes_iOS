@@ -52,6 +52,8 @@
 		A922A4A7176782BB0084418F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922A4A6176782BB0084418F /* Security.framework */; };
 		A922A4A9176782C40084418F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A922A4A8176782C40084418F /* Social.framework */; };
 		A922A4AB176782CF0084418F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A922A4AA176782CF0084418F /* libsqlite3.dylib */; };
+		A930B6DD18215F3700C7F08D /* btn_fcb_connect.png in Resources */ = {isa = PBXBuildFile; fileRef = A930B6DB18215F3700C7F08D /* btn_fcb_connect.png */; };
+		A930B6DE18215F3700C7F08D /* btn_fcb_connect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A930B6DC18215F3700C7F08D /* btn_fcb_connect@2x.png */; };
 		A94292AB17E0A9D300E0D8A5 /* ic_map.png in Resources */ = {isa = PBXBuildFile; fileRef = A94292A917E0A9D300E0D8A5 /* ic_map.png */; };
 		A94292AC17E0A9D300E0D8A5 /* ic_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A94292AA17E0A9D300E0D8A5 /* ic_map@2x.png */; };
 		A94292AF17E0AD0200E0D8A5 /* ic_facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = A94292AD17E0AD0200E0D8A5 /* ic_facebook.png */; };
@@ -210,6 +212,8 @@
 		A922A4A8176782C40084418F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A922A4AA176782CF0084418F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A927490618181CAA008B310A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		A930B6DB18215F3700C7F08D /* btn_fcb_connect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_fcb_connect.png; sourceTree = "<group>"; };
+		A930B6DC18215F3700C7F08D /* btn_fcb_connect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_fcb_connect@2x.png"; sourceTree = "<group>"; };
 		A94292A917E0A9D300E0D8A5 /* ic_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_map.png; sourceTree = "<group>"; };
 		A94292AA17E0A9D300E0D8A5 /* ic_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_map@2x.png"; sourceTree = "<group>"; };
 		A94292AD17E0AD0200E0D8A5 /* ic_facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_facebook.png; sourceTree = "<group>"; };
@@ -556,6 +560,8 @@
 		A9F1FA5517456EAE00269A5A /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				A930B6DB18215F3700C7F08D /* btn_fcb_connect.png */,
+				A930B6DC18215F3700C7F08D /* btn_fcb_connect@2x.png */,
 				A9BAB61C181689A500E85420 /* fleche.png */,
 				A9BAB61D181689A500E85420 /* fleche@2x.png */,
 				A9555EF617F0974800EE91BF /* btn_fermer-2.png */,
@@ -798,6 +804,7 @@
 				A903FBAF17CE04D4005EED4C /* MVSappm_fonct_profil@2x.png in Resources */,
 				A903FBB017CE04D4005EED4C /* photos.png in Resources */,
 				A903FBB117CE04D4005EED4C /* photos@2x.png in Resources */,
+				A930B6DD18215F3700C7F08D /* btn_fcb_connect.png in Resources */,
 				A903FBC217CE0D08005EED4C /* ic_geoloc.png in Resources */,
 				A903FBC317CE0D08005EED4C /* ic_geoloc@2x.png in Resources */,
 				A903FBC417CE0D08005EED4C /* ic_like.png in Resources */,
@@ -827,6 +834,7 @@
 				A94292AB17E0A9D300E0D8A5 /* ic_map.png in Resources */,
 				A94292AC17E0A9D300E0D8A5 /* ic_map@2x.png in Resources */,
 				A94292AF17E0AD0200E0D8A5 /* ic_facebook.png in Resources */,
+				A930B6DE18215F3700C7F08D /* btn_fcb_connect@2x.png in Resources */,
 				A94292B017E0AD0200E0D8A5 /* ic_facebook@2x.png in Resources */,
 				A90F0E2D17E3257E00C54404 /* ic_ghostblanc.png in Resources */,
 				A90F0E2E17E3257E00C54404 /* ic_ghostblanc@2x.png in Resources */,
